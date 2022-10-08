@@ -8,4 +8,6 @@ redirect_from:
 ---
 
 {% include base_path %}
-![CV](/files/CV.pdf)
+
+<object data="/files/CV.pdf" type="application/pdf" width="100%"> 
+</object>
