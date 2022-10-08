@@ -8,4 +8,4 @@ redirect_from:
 ---
 
 {% include base_path %}
-![CV](/files/CV.pdf "some discription")
+![CV](/files/CV.pdf)
