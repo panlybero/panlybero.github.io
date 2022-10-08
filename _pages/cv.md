@@ -9,5 +9,4 @@ redirect_from:
 
 {% include base_path %}
 
-<object data="/files/CV.pdf" type="application/pdf" width="100%"> 
-</object>
+<embed src="{{ site.baseurl }}/files/CV.pdf" width="600" height="700" type='application/pdf'>
