@@ -82,12 +82,11 @@ analytics:
 author:
   name             : "Panagiotis Lymperopoulos"
   avatar           : "profile.png"
-  bio              : "Your biography for the left-hand sidebar"
-  location         : "Location"
+  bio              : "PhD Candidate at Tufts University Computer Science"
+  location         : "Cambride, MA"
   employer         :
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : "http://yourfullgooglescholarurl.com"
-  email            :
+  googlescholar    : "https://scholar.google.com/citations?user=xYm53GMAAAAJ&hl=en"
+  email            : panliberopoulos-at-gmail.com
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
