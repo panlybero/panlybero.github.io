@@ -6,7 +6,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/panagiotis-lymperopoulos-34912b191/",
   profilePicture: "/profile.png",
   heroDescription:
-    "**PhD Candidate** in Computer Science at Tufts University studying **Deep Learning** and **Neurosymbolic AI** and **Generative models**. Passionate about learning, creating and reasoning - and making machines do the same.",
+    "**PhD Candidate** in Computer Science at Tufts University studying **Deep Learning**,  **Neurosymbolic AI** and **Generative models**. Passionate about learning, creating and reasoning - and making machines do the same.",
 };
 
 export const workExperience = [
