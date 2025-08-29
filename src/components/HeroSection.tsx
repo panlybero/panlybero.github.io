@@ -2,6 +2,7 @@ import { personalInfo } from "@/lib/data";
 import { Mail, Github, MapPin, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
+import ReactMarkdown from "react-markdown";
 
 export default function HeroSection() {
   const containerVariants = {
@@ -41,14 +42,14 @@ export default function HeroSection() {
               variants={childVariants}
             >
               {personalInfo.name}{" "}
-              <span className="inline-block animate-pulse">✨</span>
+              <span className="inline-block animate-pulse"></span>
             </motion.h1>
 
             <motion.p
               className="text-xl text-muted-foreground mb-6"
               variants={childVariants}
             >
-              Software Engineer 👨‍💻
+              AI Researcher 🧠
             </motion.p>
 
             <motion.div
@@ -120,10 +121,14 @@ export default function HeroSection() {
 
         <MotionWrapper>
           <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-purple-500/20 dark:border-purple-500/10 shadow-sm">
-            <p className="text-muted-foreground pl-4 py-2 mb-4 relative">
+            <div className="text-muted-foreground pl-4 py-2 mb-4 relative">
               <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></span>
-              {personalInfo.heroDescription}
-            </p>
+              <div className="prose prose-sm dark:prose-invert max-w-none">
+                <ReactMarkdown>
+                  {personalInfo.heroDescription}
+                </ReactMarkdown>
+              </div>
+            </div>
           </div>
         </MotionWrapper>
       </div>

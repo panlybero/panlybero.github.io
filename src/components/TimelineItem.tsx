@@ -9,6 +9,7 @@ interface TimelineItemProps {
   isLast?: boolean;
   index?: number;
   children?: React.ReactNode;
+  "data-component"?: string;
 }
 
 export default function TimelineItem({
@@ -18,6 +19,7 @@ export default function TimelineItem({
   isLast = false,
   index = 0,
   children,
+  "data-component": dataComponent,
 }: TimelineItemProps) {
   return (
     <motion.div
@@ -26,6 +28,7 @@ export default function TimelineItem({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
       viewport={{ once: true, margin: "-50px" }}
+      data-component={dataComponent}
     >
       <div className="flex flex-col items-center">
         <motion.div

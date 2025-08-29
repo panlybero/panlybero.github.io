@@ -34,6 +34,7 @@ export default function ExperienceSection() {
               date={`📅 ${job.period}`}
               isLast={index === workExperience.length - 1}
               index={index}
+              data-component="experience"
             >
               <motion.div
                 className="mt-3 p-4 bg-background/80 backdrop-blur-sm backdrop-filter rounded-lg border border-purple-500/20 dark:bg-card/10 dark:border-purple-500/10 shadow-sm"

@@ -118,3 +118,41 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .prose {
+    @apply text-muted-foreground leading-relaxed;
+  }
+  
+  .prose strong {
+    @apply text-foreground font-semibold;
+  }
+  
+  .prose em {
+    @apply italic;
+  }
+  
+  .prose a {
+    @apply text-purple-500 hover:text-purple-600 transition-colors underline decoration-purple-500/30 hover:decoration-purple-500;
+  }
+  
+  .prose code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+  
+  .prose p {
+    @apply mb-4 last:mb-0;
+  }
+  
+  .dark .prose {
+    @apply text-muted-foreground;
+  }
+  
+  .dark .prose strong {
+    @apply text-foreground;
+  }
+  
+  .dark .prose a {
+    @apply text-purple-400 hover:text-purple-300;
+  }
+}
