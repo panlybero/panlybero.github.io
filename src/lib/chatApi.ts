@@ -73,7 +73,8 @@ class ChatApiService {
 }
 
 // Export a singleton instance
-export const chatApiService = new ChatApiService('http://0.0.0.0:8080');
+export const chatApiService = new ChatApiService('https://portfolio-chat-backend-1064111493675.us-central1.run.app/');
+//export const chatApiService = new ChatApiService('http://localhost:8080');
 
 // Export the class for testing or custom instances
 export { ChatApiService };
