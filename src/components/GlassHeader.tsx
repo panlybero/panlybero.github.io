@@ -3,6 +3,9 @@ import { personalInfo } from "@/lib/data";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ReactMarkdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 export default function GlassHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +21,12 @@ export default function GlassHeader() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          ✨ {personalInfo.name}
+         <ReactMarkdown 
+           remarkPlugins={[remarkMath]}
+           rehypePlugins={[rehypeKatex]}
+         >
+           $\pi^\lambda~$
+         </ReactMarkdown> {personalInfo.name}
         </motion.a>
 
         {/* Desktop Navigation */}

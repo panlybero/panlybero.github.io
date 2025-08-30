@@ -1,117 +1,63 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
+import { useChatMessages, type Message } from '../lib/useChatMessages';
+import { useTooltipManager, type ComponentType } from '../lib/useTooltipManager';
+import { chatApiService, type ChatMessage } from '../lib/chatApi';
 
-interface Message {
-  id: string;
-  text: string;
-  isUser: boolean;
-  timestamp: Date;
-}
+// Utility function for component hover detection
+const createComponentHoverHandler = (showContextualTooltip: (type: ComponentType) => void) => {
+  return (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    
+    const componentTypes: ComponentType[] = ['project', 'experience', 'skill', 'education', 'research'];
+    
+    for (const type of componentTypes) {
+      if (target.closest(`[data-component="${type}"]`)) {
+        showContextualTooltip(type);
+        break;
+      }
+    }
+  };
+};
 
 const ChatBubble: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: 'Hello! How can I help you today?',
-      isUser: false,
-      timestamp: new Date()
-    }
-  ]);
   const [inputText, setInputText] = useState('');
-  const [showTooltip, setShowTooltip] = useState(false);
-  const [currentTooltip, setCurrentTooltip] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const tooltipMessages = [
-    "Hey there! 👋",
-    "Have Questions? I'm here!",
-    "Let's chat! 💬",
-    "Questions? Ask me anything!",
-    "What's on your mind? 🤔",
-    "Let's talk! 💭"
-  ];
-
-  const contextualMessages = {
-    project: [
-      "Questions about this project? I've read the paper! 🔬"
-    ],
-    experience: [
-      "I learned so much from this experience! 📚",
-    ],
-    skill: [
-      "This skill has been really useful in my projects! ⚡",
-    ],
-    education: [
-      "Ask me anything about my education! 📚"
-    ],
-    research: [
-      "Questions about this project? I've read the paper! 🔬"
-    ]
-  };
+  const { messages, addUserMessage, addBotMessage } = useChatMessages();
+  const { showTooltip, currentTooltip, showRandomTooltip, showContextualTooltip } = useTooltipManager();
 
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
 
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      text: inputText,
-      isUser: true,
-      timestamp: new Date()
-    };
-
-    // Add user message to chat history immediately
-    setMessages(prev => [...prev, userMessage]);
+    const userMessage = addUserMessage(inputText);
+    const currentInput = inputText;
     setInputText('');
     setIsLoading(true);
 
     try {
-      // Prepare the chat history to send to API
-      const chatHistory = [...messages, userMessage].map(msg => ({
+      // Prepare chat history for API
+      const chatHistory: ChatMessage[] = [...messages, userMessage].map(msg => ({
         role: msg.isUser ? 'user' : 'assistant',
         content: msg.text
       }));
 
-      // TODO: Replace with actual API call
-      console.log('Sending chat history to API:', chatHistory);
-      
-      // Simulate API call with chat history
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          messages: chatHistory,
-          currentMessage: inputText
-        })
+      const result = await chatApiService.sendMessage({
+        messages: chatHistory,
+        currentMessage: currentInput
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        const botMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          text: data.message || 'Thanks for your message! I\'ll get back to you soon.',
-          isUser: false,
-          timestamp: new Date()
-        };
-        setMessages(prev => [...prev, botMessage]);
+      
+      if (result.success) {
+        addBotMessage(result.message || 'Thanks for your message! I\'ll get back to you soon.');
       } else {
-        throw new Error('API request failed');
+        addBotMessage('Sorry, I\'m having trouble connecting right now. Please try again later.');
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      
-      // Fallback response if API fails
-      const fallbackMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: 'Sorry, I\'m having trouble connecting right now. Please try again later.',
-        isUser: false,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, fallbackMessage]);
+      addBotMessage('Sorry, I\'m having trouble connecting right now. Please try again later.');
     } finally {
       setIsLoading(false);
     }
@@ -133,19 +79,8 @@ const ChatBubble: React.FC = () => {
     scrollToBottom();
   }, [messages, isLoading]);
 
-  // Show random tooltip messages occasionally
+  // Tooltip management effects
   useEffect(() => {
-    const showRandomTooltip = () => {
-      const randomMessage = tooltipMessages[Math.floor(Math.random() * tooltipMessages.length)];
-      setCurrentTooltip(randomMessage);
-      setShowTooltip(true);
-      
-      // Hide tooltip after 3 seconds
-      setTimeout(() => {
-        setShowTooltip(false);
-      }, 3000);
-    };
-
     // Show first tooltip after 2 seconds
     const initialTimer = setTimeout(showRandomTooltip, 2000);
 
@@ -159,78 +94,18 @@ const ChatBubble: React.FC = () => {
       clearTimeout(initialTimer);
       clearInterval(interval);
     };
-  }, []);
+  }, [showRandomTooltip]);
 
-  // Listen for hover events on portfolio components
+  // Component hover detection
   useEffect(() => {
-    const handleComponentHover = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      
-      // Check if hovering over a project
-      if (target.closest('[data-component="project"]')) {
-        const messages = contextualMessages.project;
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        setCurrentTooltip(randomMessage);
-        setShowTooltip(true);
-        
-        // Hide tooltip after 4 seconds for contextual messages
-        setTimeout(() => {
-          setShowTooltip(false);
-        }, 4000);
-      }
-      // Check if hovering over experience section
-      else if (target.closest('[data-component="experience"]')) {
-        const messages = contextualMessages.experience;
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        setCurrentTooltip(randomMessage);
-        setShowTooltip(true);
-        
-        setTimeout(() => {
-          setShowTooltip(false);
-        }, 4000);
-      }
-      // Check if hovering over skills section
-      else if (target.closest('[data-component="skill"]')) {
-        const messages = contextualMessages.skill;
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        setCurrentTooltip(randomMessage);
-        setShowTooltip(true);
-        
-        setTimeout(() => {
-          setShowTooltip(false);
-        }, 4000);
-      }
-      // Check if hovering over education section
-      else if (target.closest('[data-component="education"]')) {
-        const messages = contextualMessages.education;
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        setCurrentTooltip(randomMessage);
-        setShowTooltip(true);
-        
-        setTimeout(() => {
-          setShowTooltip(false);
-        }, 4000);
-      }
-      // Check if hovering over research section
-      else if (target.closest('[data-component="research"]')) {
-        const messages = contextualMessages.research;
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        setCurrentTooltip(randomMessage);
-        setShowTooltip(true);
-        
-        setTimeout(() => {
-          setShowTooltip(false);
-        }, 4000);
-      }
-    };
-
-    // Add event listeners for hover
+    const handleComponentHover = createComponentHoverHandler(showContextualTooltip);
+    
     document.addEventListener('mouseover', handleComponentHover);
     
     return () => {
       document.removeEventListener('mouseover', handleComponentHover);
     };
-  }, []);
+  }, [showContextualTooltip]);
 
   return (
     <>
