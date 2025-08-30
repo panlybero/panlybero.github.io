@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import { useChatMessages, type Message } from '../lib/useChatMessages';
 import { useTooltipManager, type ComponentType } from '../lib/useTooltipManager';
 import { chatApiService, type ChatMessage } from '../lib/chatApi';
@@ -182,9 +185,16 @@ const ChatBubble: React.FC = () => {
                       message.isUser
                         ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
                         : 'bg-gray-100 text-gray-800'
-                    }`}
+                    } ${!message.isUser ? 'max-w-md' : ''}`}
                   >
-                    <p className="text-sm">{message.text}</p>
+                    <div className={`chat-markdown ${message.isUser ? 'user-message' : ''}`}>
+                      <ReactMarkdown
+                        remarkPlugins={[remarkMath]}
+                        rehypePlugins={[rehypeKatex]}
+                      >
+                        {message.text}
+                      </ReactMarkdown>
+                    </div>
                     <p className={`text-xs mt-1 ${
                       message.isUser ? 'text-blue-100' : 'text-gray-500'
                     }`}>

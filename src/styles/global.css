@@ -2,6 +2,91 @@
 @import "tw-animate-css";
 @import "katex/dist/katex.min.css";
 
+/* Custom markdown styles for chat messages */
+.chat-markdown {
+  @apply text-sm leading-relaxed;
+}
+
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3 {
+  @apply font-semibold mb-2;
+}
+
+.chat-markdown h1 {
+  @apply text-lg;
+}
+
+.chat-markdown h2 {
+  @apply text-base;
+}
+
+.chat-markdown h3 {
+  @apply text-sm;
+}
+
+.chat-markdown p {
+  @apply mb-2 last:mb-0;
+}
+
+.chat-markdown ul,
+.chat-markdown ol {
+  @apply mb-2 pl-4;
+}
+
+.chat-markdown li {
+  @apply mb-1;
+}
+
+.chat-markdown code {
+  @apply bg-gray-800/10 rounded px-1 py-0.5 text-xs font-mono;
+}
+
+.chat-markdown pre {
+  @apply bg-gray-800/10 rounded p-2 my-2 overflow-x-auto;
+}
+
+.chat-markdown pre code {
+  @apply bg-transparent p-0;
+}
+
+.chat-markdown blockquote {
+  @apply border-l-4 border-gray-300 pl-3 italic text-gray-600 my-2;
+}
+
+.chat-markdown a {
+  @apply text-blue-600 hover:underline underline-offset-2;
+}
+
+.chat-markdown strong {
+  @apply font-semibold;
+}
+
+.chat-markdown em {
+  @apply italic;
+}
+
+/* Special styling for user messages with markdown */
+.chat-markdown.user-message {
+  @apply text-white;
+}
+
+.chat-markdown.user-message a {
+  @apply text-blue-200 hover:text-blue-100;
+}
+
+.chat-markdown.user-message code {
+  @apply bg-white/20 text-white;
+}
+
+.chat-markdown.user-message pre {
+  @apply bg-white/20;
+}
+
+.chat-markdown.user-message blockquote {
+  @apply border-white/30 text-blue-100;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
