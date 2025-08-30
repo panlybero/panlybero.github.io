@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send } from 'lucide-react';
+import { X, Send, GripVertical } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -28,6 +28,10 @@ const ChatBubble: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [chatSize, setChatSize] = useState({ width: 320, height: 384 }); // 80 * 4.8 = 384px (h-96)
+  const [isResizing, setIsResizing] = useState(false);
+  const [resizeDirection, setResizeDirection] = useState<'horizontal' | 'vertical' | 'corner' | null>(null);
+  const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const { messages, addUserMessage, addBotMessage } = useChatMessages();
@@ -110,6 +114,55 @@ const ChatBubble: React.FC = () => {
     };
   }, [showContextualTooltip]);
 
+  // Resize handlers
+  const handleResizeStart = (e: React.MouseEvent, direction: 'horizontal' | 'vertical' | 'corner') => {
+    e.preventDefault();
+    setIsResizing(true);
+    setResizeDirection(direction);
+    setResizeStart({
+      x: e.clientX,
+      y: e.clientY,
+      width: chatSize.width,
+      height: chatSize.height
+    });
+  };
+
+  const handleResizeMove = (e: MouseEvent) => {
+    if (!isResizing || !resizeDirection) return;
+
+    const deltaX = e.clientX - resizeStart.x;
+    const deltaY = e.clientY - resizeStart.y;
+
+    let newWidth = resizeStart.width;
+    let newHeight = resizeStart.height;
+
+    if (resizeDirection === 'horizontal' || resizeDirection === 'corner') {
+      newWidth = Math.max(280, Math.min(600, resizeStart.width - deltaX));
+    }
+    if (resizeDirection === 'vertical' || resizeDirection === 'corner') {
+      newHeight = Math.max(300, Math.min(600, resizeStart.height - deltaY));
+    }
+
+    setChatSize({ width: newWidth, height: newHeight });
+  };
+
+  const handleResizeEnd = () => {
+    setIsResizing(false);
+    setResizeDirection(null);
+  };
+
+  useEffect(() => {
+    if (isResizing) {
+      document.addEventListener('mousemove', handleResizeMove);
+      document.addEventListener('mouseup', handleResizeEnd);
+      
+      return () => {
+        document.removeEventListener('mousemove', handleResizeMove);
+        document.removeEventListener('mouseup', handleResizeEnd);
+      };
+    }
+  }, [isResizing, resizeStart, resizeDirection]);
+
   return (
     <>
       {/* Floating Chat Button */}
@@ -148,7 +201,11 @@ const ChatBubble: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 w-80 h-96 bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/50 z-50 flex flex-col"
+            className="fixed bottom-24 right-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/50 z-50 flex flex-col"
+            style={{
+              width: `${chatSize.width}px`,
+              height: `${chatSize.height}px`
+            }}
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -252,6 +309,45 @@ const ChatBubble: React.FC = () => {
                     <Send size={16} />
                   )}
                 </button>
+              </div>
+            </div>
+
+            {/* Resize handles */}
+            {/* Left resize handle */}
+            <div
+              className={`absolute left-0 top-0 bottom-0 w-2 cursor-ew-resize transition-colors group ${
+                isResizing && resizeDirection === 'horizontal' ? 'bg-blue-500/50' : 'hover:bg-blue-500/30'
+              }`}
+              onMouseDown={(e) => handleResizeStart(e, 'horizontal')}
+            >
+              <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-400/50 rounded-full transition-opacity ${
+                isResizing && resizeDirection === 'horizontal' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+              }`} />
+            </div>
+            
+            {/* Top resize handle */}
+            <div
+              className={`absolute top-0 left-0 right-0 h-2 cursor-ns-resize transition-colors group ${
+                isResizing && resizeDirection === 'vertical' ? 'bg-blue-500/50' : 'hover:bg-blue-500/30'
+              }`}
+              onMouseDown={(e) => handleResizeStart(e, 'vertical')}
+            >
+              <div className={`absolute top-0 left-1/2 -translate-x-1/2 h-1 w-8 bg-blue-400/50 rounded-full transition-opacity ${
+                isResizing && resizeDirection === 'vertical' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+              }`} />
+            </div>
+            
+            {/* Corner resize handle */}
+            <div
+              className={`absolute top-0 left-0 w-6 h-6 cursor-se-resize transition-colors rounded-tr group ${
+                isResizing && resizeDirection === 'corner' ? 'bg-blue-500/50' : 'hover:bg-blue-500/30'
+              }`}
+              onMouseDown={(e) => handleResizeStart(e, 'corner')}
+            >
+              <div className={`absolute top-1 left-1 w-4 h-4 bg-blue-400/50 rounded transition-opacity flex items-center justify-center ${
+                isResizing && resizeDirection === 'corner' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+              }`}>
+                <GripVertical size={16} className="text-white rotate-90" />
               </div>
             </div>
           </motion.div>
