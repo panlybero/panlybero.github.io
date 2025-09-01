@@ -1,0 +1,16 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import GlassHeader from "@/components/GlassHeader";
+import PublicationsSection from "@/components/PublicationsSection";
+import Footer from "@/components/Footer";
+import ChatBubble from "@/components/ChatBubble";
+---
+
+<Layout title="Publications - Panagiotis Lymperopoulos" description="Research publications and academic contributions">
+  <GlassHeader client:only="react" />
+  <main class="min-h-screen">
+    <PublicationsSection client:only="react" />
+  </main>
+  <Footer client:only="react" />
+  <ChatBubble client:only="react" />
+</Layout>

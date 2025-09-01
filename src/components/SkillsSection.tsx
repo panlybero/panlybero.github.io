@@ -54,7 +54,7 @@ export default function SkillsSection() {
       <div className="container max-w-4xl mx-auto px-6 md:px-4">
         <MotionWrapper>
           <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-            🛠️ Skills
+             Skills
           </h2>
         </MotionWrapper>
 
@@ -69,7 +69,7 @@ export default function SkillsSection() {
         <motion.div variants={skillCategoryVariants}>
             <GlassCard className="p-4">
               <h3 className="text-lg font-medium mb-3 text-center md:text-left flex items-center">
-                <span className="mr-2 text-xl">🧰</span> Areas of Expertise
+                <span className="mr-2 text-xl"></span> Areas of Expertise
               </h3>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {skills.toolsAndServices.map((skill, index) => (
@@ -83,7 +83,7 @@ export default function SkillsSection() {
           <motion.div variants={skillCategoryVariants}>
             <GlassCard className="p-4">
               <h3 className="text-lg font-medium mb-3 text-center md:text-left flex items-center">
-                <span className="mr-2 text-xl">💻</span> Programming Languages & Frameworks
+                <span className="mr-2 text-xl"></span> Programming Languages & Frameworks
               </h3>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {skills.programmingLanguages.map((skill, index) => (
