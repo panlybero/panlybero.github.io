@@ -121,7 +121,7 @@ export const projects = [
 export const publications = [
   {
     title: "Tools in the Loop: Quantifying Uncertainty of LLM Question Answering Systems That Use Tools",
-    link: "https://arxiv.org/pdf/2405.16113.pdf",
+    link: "https://arxiv.org/pdf/2505.16113",
     description: "Large Language Models (LLMs) often use external tools to improve their accuracy, but this creates new challenges in assessing their reliability. We introduce a framework to systematically measure the uncertainty that arises from both the LLM and the tools it uses. Our proposed method provides a more trustworthy confidence score for the final answer, enhancing the safety and reliability of tool-augmented LLM systems.",
     category: "Machine learning and NLP",
     date: "2025",
@@ -129,7 +129,7 @@ export const publications = [
   },
   {
     title: "Oh, Now I See What You Want: Learning Agent Models with Internal States from Observations",
-    link: "https://dl.acm.org/doi/pdf/10.5555/3639553.3639649",
+    link: "https://aamas.csc.liv.ac.uk/Proceedings/aamas2024/pdfs/p1310.pdf",
     description: "Understanding the intent of other agents is key to collaboration but is difficult when their internal goals are hidden. In this research, we propose a method to learn a complete model of another agent, including its unobservable internal states, by only watching its actions. Our neurosymbolic approach infers the agent's decision-making logic, enabling better prediction of its behavior and more effective cooperation.",
     category: "Neurosymbolic AI",
     date: "2024",
@@ -137,7 +137,7 @@ export const publications = [
   },
   {
     title: "A neurosymbolic cognitive architecture framework for handling novelties in open worlds",
-    link: "https://arxiv.org/pdf/2301.02334.pdf",
+    link: "https://www.sciencedirect.com/science/article/am/pii/S000437022400047X",
     description: "To operate reliably in the real world, AI agents must manage unexpected events that contradict their knowledge. In this paper, we present a cognitive architecture that integrates symbolic reasoning with neural learning to explicitly manage such 'open-world' novelties. This framework allows an agent to successfully detect, explain, and adapt its behavior when faced with unforeseen circumstances.",
     category: "Neurosymbolic AI",
     date: "2024",
@@ -145,7 +145,7 @@ export const publications = [
   },
   {
     title: "NovelGym: A Flexible Ecosystem for Hybrid Planning and Learning Agents Designed for Open Worlds",
-    link: "https://arxiv.org/pdf/2401.03546.pdf",
+    link: "https://arxiv.org/pdf/2401.03546",
     description: "The development of AI agents that can handle unexpected events is limited by a lack of suitable testing environments. In this paper, we introduce NovelGym, an open-source platform designed for building and evaluating agents that combine symbolic planning and machine learning. The ecosystem provides a suite of tools for systematically injecting novelties to test an agent's ability to adapt to new situations.",
     category: "Neurosymbolic AI",
     date: "2024",
@@ -161,7 +161,7 @@ export const publications = [
   },
   {
     title: "Exploiting Variable Correlation with Masked Modeling for Anomaly Detection in Time Series",
-    link: "https://arxiv.org/pdf/2211.08221.pdf",
+    link: "https://openreview.net/pdf?id=TCJuzs585W",
     description: "Pinpointing anomalies in complex multivariate time series data is a significant challenge for system monitoring. In this paper, we introduce a novel detection method inspired by masked language models like BERT. By learning the intricate correlations between different data streams, our model can accurately identify deviations from normal behavior and attribute the anomaly to the specific sensors responsible.",
     category: "Machine learning and NLP",
     date: "2022",
@@ -169,7 +169,7 @@ export const publications = [
   },
   {
     title: "NovelCraft: A Dataset for Novelty Detection and Discovery in Open Worlds",
-    link: "https://arxiv.org/pdf/2206.11736.pdf",
+    link: "https://arxiv.org/pdf/2206.11736",
     description: "Research into AI agents that can handle the unexpected is hampered by a lack of good benchmarks. In this paper, we introduce NovelCraft, a large-scale dataset built in the Minecraft environment for studying novelty detection. It provides a controlled setting where a wide variety of novel events can be introduced, enabling rigorous and reproducible evaluation of an agent's ability to adapt.",
     category: "Neurosymbolic AI",
     date: "2022",
@@ -193,7 +193,7 @@ export const publications = [
   },
   {
     title: "Forecasting COVID-19 Counts At A Single Hospital: A Hierarchical Bayesian Approach",
-    link: "https://arxiv.org/pdf/2104.09327.pdf",
+    link: "https://arxiv.org/pdf/2104.09327",
     description: "Hospitals require accurate, localized forecasts of COVID-19 cases to manage resources, but creating such predictions is difficult. In this work, we address this problem by developing a hierarchical Bayesian model tailored for single-hospital forecasting. Our model effectively predicts patient admissions, ICU counts, and other key metrics while also providing crucial uncertainty estimates to inform decision-making.",
     category: "ML for Science",
     date: "2021",
@@ -201,7 +201,7 @@ export const publications = [
   },
   {
     title: "Branching principles of animal and plant networks identified by combining extensive data, machine learning and modelling",
-    link: "https://royalsocietypublishing.org/doi/pdf/10.1098/rsif.2020.0624",
+    link: "https://royalsocietypublishing.org/doi/pdf/10.1098/rsif.2020.0624?download=true",
     description: "Biological transport networks, from leaf veins to blood vessels, are essential for life, but a unified theory explaining their branching patterns has been elusive. In this study, we analyze a massive dataset of branching structures from across the tree of life using machine learning. We identify the key statistical features that govern these patterns and develop a generative model that can replicate the diverse network designs found in nature.",
     category: "ML for Science",
     date: "2021",
@@ -209,7 +209,7 @@ export const publications = [
   },
   {
     title: "Concept wikification for covid-19",
-    link: "https://aclanthology.org/2020.nlpcovid19-2.22.pdf",
+    link: "https://aclanthology.org/2020.nlpcovid19-2.29.pdf",
     description: "The explosion of COVID-19 research has made it hard for scientists to keep up with and synthesize information. To address this information overload, we developed a system to automatically link key terms in scientific articles to a unified knowledge base. This 'wikification' process, which uses a hybrid of dictionary and BERT-based methods, helps standardize terminology and improves the discovery of relevant documents.",
     category: "Machine learning and NLP",
     date: "2020",
