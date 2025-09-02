@@ -77,6 +77,8 @@ const ChatBubble: React.FC = () => {
     }
   };
 
+
+
   // Auto-scroll to bottom when messages change
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -113,6 +115,55 @@ const ChatBubble: React.FC = () => {
       document.removeEventListener('mouseover', handleComponentHover);
     };
   }, [showContextualTooltip]);
+
+  // Auto-submit transcript when user leaves the website
+  useEffect(() => {
+    const submitTranscriptIfNeeded = () => {
+      // Only submit if there are messages beyond the default welcome message
+      if (messages.length > 1) {
+        const chatHistory: ChatMessage[] = messages.map(msg => ({
+          role: msg.isUser ? 'user' : 'assistant',
+          content: msg.text
+        }));
+        
+        const result = chatApiService.submitTranscript(chatHistory);
+        if (result.success) {
+          console.log('Transcript submitted successfully on exit');
+        } else {
+          console.warn('Failed to submit transcript on exit:', result.error);
+        }
+      }
+    };
+
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      submitTranscriptIfNeeded();
+      // Note: We don't prevent the default behavior to avoid annoying users
+    };
+
+    const handleVisibilityChange = () => {
+      // Submit when page becomes hidden (user switches tabs, minimizes, etc.)
+      if (document.visibilityState === 'hidden') {
+        submitTranscriptIfNeeded();
+      }
+    };
+
+    const handlePageHide = () => {
+      // Additional fallback for when the page is being unloaded
+      submitTranscriptIfNeeded();
+    };
+
+    // Add event listeners with multiple strategies
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('pagehide', handlePageHide);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('pagehide', handlePageHide);
+    };
+  }, [messages]);
 
   // Resize handlers
   const handleResizeStart = (e: React.MouseEvent, direction: 'horizontal' | 'vertical' | 'corner') => {
@@ -358,3 +409,4 @@ const ChatBubble: React.FC = () => {
 };
 
 export default ChatBubble;
+
