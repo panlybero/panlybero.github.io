@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, GripVertical } from 'lucide-react';
+import { X, Send, GripVertical, Trash2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -34,7 +34,7 @@ const ChatBubble: React.FC = () => {
   const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const { messages, addUserMessage, addBotMessage } = useChatMessages();
+  const { messages, addUserMessage, addBotMessage, clearMessages } = useChatMessages();
   const { showTooltip, currentTooltip, showRandomTooltip, showContextualTooltip } = useTooltipManager();
 
   const handleSendMessage = async () => {
@@ -75,6 +75,10 @@ const ChatBubble: React.FC = () => {
       e.preventDefault();
       handleSendMessage();
     }
+  };
+
+  const handleClearChat = () => {
+    clearMessages();
   };
 
 
@@ -270,12 +274,21 @@ const ChatBubble: React.FC = () => {
                 </div>
                 <h3 className="font-semibold text-gray-800">Chat with me</h3>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                <X size={18} className="text-gray-600" />
-              </button>
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={handleClearChat}
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  title="Clear chat history"
+                >
+                  <Trash2 size={18} className="text-gray-600" />
+                </button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X size={18} className="text-gray-600" />
+                </button>
+              </div>
             </div>
 
             {/* Messages */}

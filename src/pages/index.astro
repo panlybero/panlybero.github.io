@@ -24,3 +24,32 @@ import ChatBubble from "@/components/ChatBubble";
   <Footer client:only="react" />
   <ChatBubble client:only="react" />
 </Layout>
+
+<script>
+  // Handle hash navigation after page load
+  function handleHashNavigation() {
+    const hash = window.location.hash;
+    if (hash) {
+      // Wait for React components to render
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    }
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleHashNavigation);
+  } else {
+    handleHashNavigation();
+  }
+
+  // Also handle hash changes (in case user navigates with hash)
+  window.addEventListener('hashchange', handleHashNavigation);
+</script>
