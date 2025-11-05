@@ -1,5 +1,5 @@
 import { personalInfo } from "@/lib/data";
-import { Mail, Github, MapPin, Linkedin } from "lucide-react";
+import { Mail, Github, MapPin, Linkedin, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
 import ReactMarkdown from "react-markdown";
@@ -86,7 +86,17 @@ export default function HeroSection() {
                 <span className="h-4 w-4 mr-2 flex items-center justify-center">💬</span>
                 AI Chat Portfolio
               </motion.button>
-
+              <motion.a
+                href="/CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+                variants={childVariants}
+                whileHover={{ scale: 1.05, color: "#4b5563" }}
+              >
+                <FileText className="h-4 w-4 mr-2" />
+                 CV
+              </motion.a>
               <motion.a
                 href={personalInfo.linkedin}
                 target="_blank"
@@ -98,6 +108,8 @@ export default function HeroSection() {
                 <Linkedin className="h-4 w-4 mr-2" />
                  LinkedIn
               </motion.a>
+
+             
 
               <motion.a
                 href={personalInfo.github}
