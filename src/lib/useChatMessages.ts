@@ -19,7 +19,7 @@ export interface ChatHistory {
 
 const DEFAULT_WELCOME_MESSAGE: Message = {
   id: '1',
-  text: 'Hi! How can I help?',
+  text: "Hi! How can I help? I know all about Panagiotis's research, work and education.",
   isUser: false,
   timestamp: new Date()
 };

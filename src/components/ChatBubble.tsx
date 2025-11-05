@@ -120,6 +120,19 @@ const ChatBubble: React.FC = () => {
     };
   }, [showContextualTooltip]);
 
+  // Listen for open-chat event from HeroSection button
+  useEffect(() => {
+    const handleOpenChat = () => {
+      setIsOpen(true);
+    };
+    
+    window.addEventListener('open-chat', handleOpenChat);
+    
+    return () => {
+      window.removeEventListener('open-chat', handleOpenChat);
+    };
+  }, []);
+
   // Auto-submit transcript when user leaves the website
   useEffect(() => {
     const submitTranscriptIfNeeded = () => {
@@ -272,7 +285,7 @@ const ChatBubble: React.FC = () => {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                   <img src="/chat-blue.png" alt="Chat" className="w-8 h-8" />
                 </div>
-                <h3 className="font-semibold text-gray-800">Chat with me</h3>
+                <h3 className="font-semibold text-gray-800">AI Chat Portfolio</h3>
               </div>
               <div className="flex items-center space-x-1">
                 <button

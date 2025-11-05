@@ -75,17 +75,17 @@ export default function HeroSection() {
                  {personalInfo.email}
               </motion.a>
 
-              <motion.a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('open-chat'));
+                }}
                 className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
                 variants={childVariants}
                 whileHover={{ scale: 1.05, color: "#4b5563" }}
               >
-                <Github className="h-4 w-4 mr-2" />
-                 GitHub
-              </motion.a>
+                <span className="h-4 w-4 mr-2 flex items-center justify-center">💬</span>
+                AI Chat Portfolio
+              </motion.button>
 
               <motion.a
                 href={personalInfo.linkedin}
@@ -97,6 +97,18 @@ export default function HeroSection() {
               >
                 <Linkedin className="h-4 w-4 mr-2" />
                  LinkedIn
+              </motion.a>
+
+              <motion.a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+                variants={childVariants}
+                whileHover={{ scale: 1.05, color: "#4b5563" }}
+              >
+                <Github className="h-4 w-4 mr-2" />
+                 GitHub
               </motion.a>
             </motion.div>
           </div>
