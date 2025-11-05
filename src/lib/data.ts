@@ -1,3 +1,5 @@
+import { title } from "framer-motion/client";
+
 export const personalInfo = {
   name: "Panagiotis Lymperopoulos",
   location: "Boston, US",
@@ -120,12 +122,22 @@ export const projects = [
 
 export const publications = [
   {
+    title: "Act-to-Ground: A Framework for Symbol Grounding in Planning Domains",
+    link:"https://proceedings.mlr.press/v284/lymperopoulos25a.html",
+    description: "Neurosymbolic decision-making agents inherit many of the critical transparency and interpretability benefits of planning-based symbolic agents but also face one of their central challenges: the Symbol Grounding Problem (SGP). In this work we propose Act-to-Ground (A2G), a framework for training grounding models for symbolic planners with weak supervision obtained through environment interaction or demonstrations. We first cast the grounding problem as an inference problem and 1) use satisfiability-based planning to provide weak supervision to the grounding model by exploiting knowledge already built into the planning domain, 2) propose an MCMC sampler that enables sampling weak labels for grounding planners, 3) improve neurosymbolic grounding performance via a score-matching objective and 4) propose a learnability condition for learning grounding models for planners.",
+    category: "Neurosymbolic AI",
+    date: "2025",
+    image: "/publications/a2g.png"
+
+  },
+
+  {
     title: "Tools in the Loop: Quantifying Uncertainty of LLM Question Answering Systems That Use Tools",
     link: "https://arxiv.org/pdf/2505.16113",
     description: "Large Language Models (LLMs) often use external tools to improve their accuracy, but this creates new challenges in assessing their reliability. We introduce a framework to systematically measure the uncertainty that arises from both the LLM and the tools it uses. Our proposed method provides a more trustworthy confidence score for the final answer, enhancing the safety and reliability of tool-augmented LLM systems.",
     category: "Machine learning and NLP",
     date: "2025",
-    image: "/publications/default.svg"
+    image: "/publications/tools-in-the-loop.png"
   },
   {
     title: "Oh, Now I See What You Want: Learning Agent Models with Internal States from Observations",
@@ -133,7 +145,7 @@ export const publications = [
     description: "Understanding the intent of other agents is key to collaboration but is difficult when their internal goals are hidden. In this research, we propose a method to learn a complete model of another agent, including its unobservable internal states, by only watching its actions. Our neurosymbolic approach infers the agent's decision-making logic, enabling better prediction of its behavior and more effective cooperation.",
     category: "Neurosymbolic AI",
     date: "2024",
-    image: "/publications/default.svg"
+    image: "/publications/oh-now-i-see.png"
   },
   {
     title: "A neurosymbolic cognitive architecture framework for handling novelties in open worlds",
@@ -141,7 +153,7 @@ export const publications = [
     description: "To operate reliably in the real world, AI agents must manage unexpected events that contradict their knowledge. In this paper, we present a cognitive architecture that integrates symbolic reasoning with neural learning to explicitly manage such 'open-world' novelties. This framework allows an agent to successfully detect, explain, and adapt its behavior when faced with unforeseen circumstances.",
     category: "Neurosymbolic AI",
     date: "2024",
-    image: "/publications/default.svg"
+    image: "/publications/nesy-cogn.png"
   },
   {
     title: "NovelGym: A Flexible Ecosystem for Hybrid Planning and Learning Agents Designed for Open Worlds",
@@ -149,7 +161,7 @@ export const publications = [
     description: "The development of AI agents that can handle unexpected events is limited by a lack of suitable testing environments. In this paper, we introduce NovelGym, an open-source platform designed for building and evaluating agents that combine symbolic planning and machine learning. The ecosystem provides a suite of tools for systematically injecting novelties to test an agent's ability to adapt to new situations.",
     category: "Neurosymbolic AI",
     date: "2024",
-    image: "/publications/default.svg"
+    image: "/publications/novelgym.png"
   },
   {
     title: "Graph Pruning for Enumeration of Minimal Unsatisfiable Subsets",
@@ -157,7 +169,7 @@ export const publications = [
     description: "Identifying all Minimal Unsatisfiable Subsets (MUSes) is a core problem in formal verification and AI, but existing methods are often too slow. In this work, we present a novel graph-based algorithm that significantly speeds up the process of finding all MUSes. By intelligently pruning the search space, our method efficiently solves complex logical problems and outperforms previous state-of-the-art approaches.",
     category: "Machine learning and NLP",
     date: "2024",
-    image: "/publications/default.svg"
+    image: "/publications/grape-must.png"
   },
   {
     title: "Exploiting Variable Correlation with Masked Modeling for Anomaly Detection in Time Series",
@@ -165,19 +177,19 @@ export const publications = [
     description: "Pinpointing anomalies in complex multivariate time series data is a significant challenge for system monitoring. In this paper, we introduce a novel detection method inspired by masked language models like BERT. By learning the intricate correlations between different data streams, our model can accurately identify deviations from normal behavior and attribute the anomaly to the specific sensors responsible.",
     category: "Machine learning and NLP",
     date: "2022",
-    image: "/publications/default.svg"
+    image: "/publications/anom-detect.png"
   },
   {
     title: "NovelCraft: A Dataset for Novelty Detection and Discovery in Open Worlds",
     link: "https://arxiv.org/pdf/2206.11736",
     description: "Research into AI agents that can handle the unexpected is hampered by a lack of good benchmarks. In this paper, we introduce NovelCraft, a large-scale dataset built in the Minecraft environment for studying novelty detection. It provides a controlled setting where a wide variety of novel events can be introduced, enabling rigorous and reproducible evaluation of an agent's ability to adapt.",
-    category: "Neurosymbolic AI",
+    category: "Machine learning and NLP",
     date: "2022",
-    image: "/publications/default.svg"
+    image: "/publications/novelcraft.png"
   },
   {
     title: "Deep-learning-based image restoration of depth-resolved, label-free, two-photon images for the quantitative morphological and functional characterization of human cervical tissues",
-    link: "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11647/116470Z/Deep-learning-based-image-restoration-of-depth-resolved-label/10.1117/12.2577626.full",
+    link: "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11647/2578650/Deep-learning-based-image-restoration-of-depth-resolved-label-free/10.1117/12.2578650.short",
     description: "Obtaining clear images of deep biological tissue is challenging and often limits diagnostic accuracy. In this research, we develop a deep learning model to restore the quality of degraded two-photon microscopy images of human cervical tissue. Our proposed method significantly enhances image clarity, which in turn allows for more precise and reliable quantitative analysis for clinical assessment.",
     category: "ML for Science",
     date: "2021",
@@ -189,7 +201,7 @@ export const publications = [
     description: "Creating AI agents that can function in dynamic 'open worlds' where rules can change unexpectedly is a major challenge. In this paper, we present a cognitive architecture that tightly integrates planning with execution monitoring to detect and react to novelties. We demonstrate the system's effectiveness with an AI that can play Monopoly and successfully adapt its strategy when the rules are unpredictably altered mid-game.",
     category: "Neurosymbolic AI",
     date: "2021",
-    image: "/publications/default.svg"
+    image: "/publications/monopoly.png"
   },
   {
     title: "Forecasting COVID-19 Counts At A Single Hospital: A Hierarchical Bayesian Approach",
@@ -197,7 +209,7 @@ export const publications = [
     description: "Hospitals require accurate, localized forecasts of COVID-19 cases to manage resources, but creating such predictions is difficult. In this work, we address this problem by developing a hierarchical Bayesian model tailored for single-hospital forecasting. Our model effectively predicts patient admissions, ICU counts, and other key metrics while also providing crucial uncertainty estimates to inform decision-making.",
     category: "ML for Science",
     date: "2021",
-    image: "/publications/default.svg"
+    image: "/publications/hospital-forecast.png"
   },
   {
     title: "Branching principles of animal and plant networks identified by combining extensive data, machine learning and modelling",
@@ -205,7 +217,7 @@ export const publications = [
     description: "Biological transport networks, from leaf veins to blood vessels, are essential for life, but a unified theory explaining their branching patterns has been elusive. In this study, we analyze a massive dataset of branching structures from across the tree of life using machine learning. We identify the key statistical features that govern these patterns and develop a generative model that can replicate the diverse network designs found in nature.",
     category: "ML for Science",
     date: "2021",
-    image: "/publications/default.svg"
+    image: "/publications/scaling.png"
   },
   {
     title: "Concept wikification for covid-19",
@@ -213,7 +225,7 @@ export const publications = [
     description: "The explosion of COVID-19 research has made it hard for scientists to keep up with and synthesize information. To address this information overload, we developed a system to automatically link key terms in scientific articles to a unified knowledge base. This 'wikification' process, which uses a hybrid of dictionary and BERT-based methods, helps standardize terminology and improves the discovery of relevant documents.",
     category: "Machine learning and NLP",
     date: "2020",
-    image: "/publications/default.svg"
+    image: "/publications/wikification.png"
   },
 
 

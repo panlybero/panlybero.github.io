@@ -138,7 +138,7 @@ export default function PublicationsSection() {
                     <img
                       src={publication.image}
                       alt={publication.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.src = "/publications/default.svg";
@@ -201,7 +201,7 @@ export default function PublicationsSection() {
                           <img
                             src={publication.image}
                             alt={publication.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-top"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.src = "/publications/default.svg";
