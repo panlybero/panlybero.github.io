@@ -193,7 +193,7 @@ export const publications = [
     description: "Obtaining clear images of deep biological tissue is challenging and often limits diagnostic accuracy. In this research, we develop a deep learning model to restore the quality of degraded two-photon microscopy images of human cervical tissue. Our proposed method significantly enhances image clarity, which in turn allows for more precise and reliable quantitative analysis for clinical assessment.",
     category: "ML for Science",
     date: "2021",
-    image: "/publications/default.svg"
+    image: "/publications/denoising.png"
   },
   {
     title: "Integrating Planning, Execution and Monitoring in the presence of Open World Novelties: Case Study of an Open World Monopoly Solver",
