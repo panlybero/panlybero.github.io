@@ -86,6 +86,15 @@ export const skills = {
 
 export const projects = [
   {
+    title: "Efficient Generative Proxies for Neurosymbolic Learning",
+    link: "",
+    description: [
+      "- Proposed Efficient Generative Proxies (EGP), a framework that integrates reconstruction-based training into a generative modeling perspective to overcome reasoning shortcuts in neurosymbolic learning.",
+      "- Designed a reconstruction objective that encourages similar inputs to map to similar concepts, substantially reducing grounding ambiguity.",
+      "- Demonstrated significant improvements in grounding accuracy on the RSbench benchmark and the multi-concept ObjectMath dataset, published in Transactions on Machine Learning Research (TMLR).",
+    ],
+  },
+  {
     title: "Act-to-Ground: Neurosymbolic Grounding for Planners",
     link: "",
     description: [
@@ -100,14 +109,6 @@ export const projects = [
     description: [
       "- Developed a novel method for quantifying the uncertainty of Large Language Model (LLM) question-answering systems that use external tools such as RAG or querying ML models.",
       "- Presented results at the 24th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2025).",
-    ],
-  },
-  {
-    title: "Open-world Agent Modeling",
-    link: "",
-    description: [
-      "- Developed a novel method for online modeling of agent behavior from observations, that accounts for unobservable agent-internal states, crucial in HCI, HRI applications.",
-      "- Presented a paper describing the method and its results at the 24th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2024).",
     ],
   },
   {
