@@ -52,7 +52,7 @@ const ChatBubble: React.FC = () => {
         content: msg.text
       }));
 
-      const result = await chatApiService.sendMessage({
+      const result = await chatApiService.sendMessageWithRetry({
         messages: chatHistory,
         currentMessage: currentInput
       });
