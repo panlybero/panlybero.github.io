@@ -8,7 +8,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/panagiotis-lymperopoulos-34912b191/",
   profilePicture: "/profile.png",
   heroDescription:
-    "**PhD Candidate** in Computer Science at Tufts University studying **Deep Learning**,  **Neurosymbolic AI** and **Generative models**. Passionate about learning, creating and reasoning - and making machines do the same.",
+    "**Software Engineer** at Google, with a PhD in Computer Science from Tufts University focused on **Deep Learning**, **Neurosymbolic AI** and **Generative models**. Passionate about learning, creating and reasoning - and making machines do the same.",
 };
 
 export const workExperience = [
@@ -49,7 +49,7 @@ export const education = [
   {
     institution: "Tufts University",
     location: "Medford, MA",
-    degree: "PhD Candidate in Computer Science, MS in Data Science",
+    degree: "PhD in Computer Science, MS in Data Science",
     period: "August 2019 - June 2026",
   },
   {
@@ -121,6 +121,31 @@ export const projects = [
 ];
 
 export const publications = [
+  {
+    title: "CASSANDRA: Programmatic and Probabilistic Learning and Inference for Stochastic World Modeling",
+    link: "https://arxiv.org/abs/2601.18620",
+    description: "Building accurate world models for real-world planning, such as in business settings, is difficult when data is limited. In this work, we propose CASSANDRA, a neurosymbolic approach that uses large language models as a knowledge prior to build lightweight, interpretable world models for planning. By combining LLM-synthesized code for deterministic dynamics with LLM-guided structure learning for stochastic causal relationships, our method significantly improves transition prediction and planning performance in simulated business environments, from a coffee shop to a complex theme park.",
+    category: "Neurosymbolic AI",
+    date: "2026",
+    image: "/publications/default.svg"
+  },
+  {
+    title: "Towards Overcoming Reasoning Shortcuts in Neurosymbolic Learning via Efficient Generative Proxies",
+    link: "https://openreview.net/forum?id=Sl2aC9hiaN",
+    description: "Neurosymbolic AI systems that ground sensory inputs to symbolic concepts often suffer from 'reasoning shortcuts,' where inputs are mapped to unintended concepts due to limited supervision. We propose Efficient Generative Proxies (EGP), a framework that integrates reconstruction-based training into a generative modeling perspective, encouraging similar inputs to map to similar concepts. EGP subsumes several existing grounding approaches and substantially improves grounding accuracy across neurosymbolic learning benchmarks, including RSbench and the multi-concept ObjectMath dataset.",
+    category: "Neurosymbolic AI",
+    date: "2026",
+    image: "/publications/default.svg"
+  },
+  {
+    title: "Mini Amusement Parks (MAPs): A Testbed for Modelling Business Decisions",
+    link: "https://arxiv.org/abs/2511.15830",
+    description: "Evaluating AI agents on realistic, open-ended decision-making remains an open challenge, since existing benchmarks rarely combine long-horizon planning, environment learning, and spatial reasoning in one setting. We introduce Mini Amusement Parks (MAPs), an amusement-park business simulator designed to test these capabilities together. Benchmarking state-of-the-art agents against expert humans, we find experts outperform current systems by over 11x, revealing persistent weaknesses in long-horizon planning, sample-efficient learning, and reasoning under uncertainty.",
+    category: "Machine learning and NLP",
+    date: "2025",
+    image: "/publications/default.svg"
+  },
+
   {
     title: "Act-to-Ground: A Framework for Symbol Grounding in Planning Domains",
     link:"https://proceedings.mlr.press/v284/lymperopoulos25a.html",
