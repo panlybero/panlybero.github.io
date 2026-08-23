@@ -8,7 +8,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/panagiotis-lymperopoulos-34912b191/",
   profilePicture: "/profile.png",
   heroDescription:
-    "**Software Engineer** and **AI Researcher** at Google, with a PhD in Computer Science from Tufts University focused on **Deep Learning**, **Neurosymbolic AI** and **Generative models**. Passionate about learning, creating and reasoning - and making machines do the same.",
+    "**Software Engineer** and **AI Researcher** at Google, with a PhD in Computer Science from Tufts University. Currently working on **Continual Learning Agents** and **Neurosymbolic AI**. Passionate about learning, creating and reasoning - and making machines do the same.",
 };
 
 export const workExperience = [
