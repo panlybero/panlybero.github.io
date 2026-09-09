@@ -9,7 +9,7 @@ export default defineConfig({
   vite: {
       plugins: [tailwindcss()],
   },
-  site: 'https://panlybero.github.io',
+  site: 'https://plympe.com',
   base: '/',
   integrations: [react()]
 });
